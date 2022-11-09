@@ -11,6 +11,11 @@
 		FC2EB67C291168A1004E766C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2EB67B291168A1004E766C /* ContentView.swift */; };
 		FC2EB67E291168A2004E766C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC2EB67D291168A2004E766C /* Assets.xcassets */; };
 		FC2EB681291168A2004E766C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC2EB680291168A2004E766C /* Preview Assets.xcassets */; };
+		FC2EB68D29116E4A004E766C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2EB68C29116E4A004E766C /* Channel.swift */; };
+		FCCB53CF291825FC00EB136B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB53CE291825FC00EB136B /* CloudKit.framework */; };
+		FCCB53D42918283600EB136B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB53D32918283600EB136B /* Transaction.swift */; };
+		FCCB53D6291AED2D00EB136B /* ContactSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB53D5291AED2D00EB136B /* ContactSelectView.swift */; };
+		FCCB53D8291B084300EB136B /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB53D7291B084300EB136B /* ContactPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,12 @@
 		FC2EB67B291168A1004E766C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FC2EB67D291168A2004E766C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC2EB680291168A2004E766C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FC2EB68C29116E4A004E766C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		FCCB53CE291825FC00EB136B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		FCCB53D02918261E00EB136B /* Heath.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Heath.entitlements; sourceTree = "<group>"; };
+		FCCB53D32918283600EB136B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		FCCB53D5291AED2D00EB136B /* ContactSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSelectView.swift; sourceTree = "<group>"; };
+		FCCB53D7291B084300EB136B /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCCB53CF291825FC00EB136B /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,6 +49,7 @@
 			children = (
 				FC2EB678291168A1004E766C /* Heath */,
 				FC2EB677291168A1004E766C /* Products */,
+				FCCB53CD291825FC00EB136B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,8 +64,9 @@
 		FC2EB678291168A1004E766C /* Heath */ = {
 			isa = PBXGroup;
 			children = (
-				FC2EB679291168A1004E766C /* HeathApp.swift */,
-				FC2EB67B291168A1004E766C /* ContentView.swift */,
+				FCCB53D22918273D00EB136B /* Views */,
+				FCCB53D12918272500EB136B /* App */,
+				FC2EB68B29116DDA004E766C /* Models */,
 				FC2EB67D291168A2004E766C /* Assets.xcassets */,
 				FC2EB67F291168A2004E766C /* Preview Content */,
 			);
@@ -65,6 +79,42 @@
 				FC2EB680291168A2004E766C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FC2EB68B29116DDA004E766C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FC2EB68C29116E4A004E766C /* Channel.swift */,
+				FCCB53D32918283600EB136B /* Transaction.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FCCB53CD291825FC00EB136B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCCB53CE291825FC00EB136B /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FCCB53D12918272500EB136B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FCCB53D02918261E00EB136B /* Heath.entitlements */,
+				FC2EB679291168A1004E766C /* HeathApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FCCB53D22918273D00EB136B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FC2EB67B291168A1004E766C /* ContentView.swift */,
+				FCCB53D5291AED2D00EB136B /* ContactSelectView.swift */,
+				FCCB53D7291B084300EB136B /* ContactPicker.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +187,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC2EB68D29116E4A004E766C /* Channel.swift in Sources */,
+				FCCB53D42918283600EB136B /* Transaction.swift in Sources */,
+				FCCB53D8291B084300EB136B /* ContactPicker.swift in Sources */,
 				FC2EB67C291168A1004E766C /* ContentView.swift in Sources */,
 				FC2EB67A291168A1004E766C /* HeathApp.swift in Sources */,
+				FCCB53D6291AED2D00EB136B /* ContactSelectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +318,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Heath/App/Heath.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Heath/Preview Content\"";
@@ -273,8 +328,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -293,6 +348,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Heath/App/Heath.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Heath/Preview Content\"";
@@ -302,8 +358,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
