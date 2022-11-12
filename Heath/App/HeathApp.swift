@@ -17,4 +17,3 @@ struct HeathApp: App {
         }
     }
 }
-
