@@ -12,7 +12,7 @@ struct HeathApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                ContentView()
+                ContentView().environmentObject(ViewModel())
             }
         }
     }

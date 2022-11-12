@@ -12,9 +12,11 @@
 		FC2EB67E291168A2004E766C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC2EB67D291168A2004E766C /* Assets.xcassets */; };
 		FC2EB681291168A2004E766C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC2EB680291168A2004E766C /* Preview Assets.xcassets */; };
 		FC2EB68D29116E4A004E766C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2EB68C29116E4A004E766C /* Channel.swift */; };
+		FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E70291F719200AFB757 /* MessageComposeView.swift */; };
+		FC9ACA0A291C77D300061440 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ACA09291C77D300061440 /* ViewModel.swift */; };
+		FC9ACA0C291C7E9D00061440 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ACA0B291C7E9D00061440 /* Config.swift */; };
 		FCCB53CF291825FC00EB136B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB53CE291825FC00EB136B /* CloudKit.framework */; };
 		FCCB53D42918283600EB136B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB53D32918283600EB136B /* Transaction.swift */; };
-		FCCB53D6291AED2D00EB136B /* ContactSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB53D5291AED2D00EB136B /* ContactSelectView.swift */; };
 		FCCB53D8291B084300EB136B /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB53D7291B084300EB136B /* ContactPicker.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,10 +27,12 @@
 		FC2EB67D291168A2004E766C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC2EB680291168A2004E766C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FC2EB68C29116E4A004E766C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		FC8C8E70291F719200AFB757 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
+		FC9ACA09291C77D300061440 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		FC9ACA0B291C7E9D00061440 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		FCCB53CE291825FC00EB136B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FCCB53D02918261E00EB136B /* Heath.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Heath.entitlements; sourceTree = "<group>"; };
 		FCCB53D32918283600EB136B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		FCCB53D5291AED2D00EB136B /* ContactSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSelectView.swift; sourceTree = "<group>"; };
 		FCCB53D7291B084300EB136B /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,8 +68,9 @@
 		FC2EB678291168A1004E766C /* Heath */ = {
 			isa = PBXGroup;
 			children = (
-				FCCB53D22918273D00EB136B /* Views */,
 				FCCB53D12918272500EB136B /* App */,
+				FCCB53D22918273D00EB136B /* Views */,
+				FC9ACA08291C77BA00061440 /* ViewModels */,
 				FC2EB68B29116DDA004E766C /* Models */,
 				FC2EB67D291168A2004E766C /* Assets.xcassets */,
 				FC2EB67F291168A2004E766C /* Preview Content */,
@@ -90,6 +95,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		FC9ACA08291C77BA00061440 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FC9ACA09291C77D300061440 /* ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		FCCB53CD291825FC00EB136B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +116,7 @@
 			children = (
 				FCCB53D02918261E00EB136B /* Heath.entitlements */,
 				FC2EB679291168A1004E766C /* HeathApp.swift */,
+				FC9ACA0B291C7E9D00061440 /* Config.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -111,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				FC2EB67B291168A1004E766C /* ContentView.swift */,
-				FCCB53D5291AED2D00EB136B /* ContactSelectView.swift */,
 				FCCB53D7291B084300EB136B /* ContactPicker.swift */,
+				FC8C8E70291F719200AFB757 /* MessageComposeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,10 +203,12 @@
 			files = (
 				FC2EB68D29116E4A004E766C /* Channel.swift in Sources */,
 				FCCB53D42918283600EB136B /* Transaction.swift in Sources */,
+				FC9ACA0C291C7E9D00061440 /* Config.swift in Sources */,
 				FCCB53D8291B084300EB136B /* ContactPicker.swift in Sources */,
 				FC2EB67C291168A1004E766C /* ContentView.swift in Sources */,
+				FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */,
 				FC2EB67A291168A1004E766C /* HeathApp.swift in Sources */,
-				FCCB53D6291AED2D00EB136B /* ContactSelectView.swift in Sources */,
+				FC9ACA0A291C77D300061440 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +346,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -360,6 +377,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
