@@ -8,6 +8,7 @@
 import SwiftUI
 import Contacts
 import CloudKit
+import MessageUI
 
 struct ContentView: View {
     @Binding var channels: [Channel]
@@ -16,47 +17,57 @@ struct ContentView: View {
     @State private var share: CKShare?
     @State private var loadingShare = false
     @State private var isSharing = false
+    @State private var newChannel: Channel?
+    @State private var messageComposeResult: MessageComposeResult?
     
     var body: some View {
-        List {
-            /// TODO: map list of channels to `ChannelRowView`s
-        }
-        .navigationTitle("Heath")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button { Task {
-                    channels = try await ChannelStore.refresh()
-                } } label: { Image(systemName: "arrow.clockwise") }
+        ChannelsListView(channels: $channels)
+            .navigationTitle("Heath")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button { Task {
+                        channels = try await ChannelStore.refresh()
+                    } } label: { Image(systemName: "arrow.clockwise") }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { isAddingContact = true }) { Image(systemName: "plus") }
+                }
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: { isAddingContact = true }) { Image(systemName: "plus") }
+            .sheet(isPresented: $isAddingContact, onDismiss: {
+                Task {
+                    await createChannel()
+                }
+            }) {
+                ContactPicker(contact: $contact)
             }
-        }
-        .sheet(isPresented: $isAddingContact, onDismiss: {
-            Task {
-                await createChannel()
+            .sheet(isPresented: $isSharing, onDismiss: { [messageComposeResult] in
+                if let messageComposeResult = messageComposeResult {
+                    debugPrint(messageComposeResult.rawValue)
+                    if messageComposeResult == MessageComposeResult.sent, let newChannel = newChannel {
+                        channels.append(newChannel)
+                        debugPrint(channels)
+                    }
+                }
+            }) { [loadingShare, contact, share] in
+                if loadingShare {
+                    ProgressView()
+                } else if let contact1 = contact, let url = share?.url {
+                    MessageComposeView(contact: contact1, message: url.absoluteString, result: $messageComposeResult)
+                }
             }
-        }) {
-            ContactPicker(contact: $contact)
-        }
-        .sheet(isPresented: $isSharing) { [loadingShare, contact, share] in
-            if loadingShare {
-                ProgressView()
-            } else if let contact1 = contact, let url = share?.url {
-                MessageComposeView(contact: contact1, message: url.absoluteString)
-            }
-        }
     }
     
     private func createChannel() async {
         guard let contact = contact else { return }
         do {
-            let newChannel = try await ChannelStore.addChannel(id: contact.identifier)
+            newChannel = try await ChannelStore.addChannel(id: contact.identifier)
             isSharing = true
             loadingShare = true
-            let (newShare, _) = try await ChannelStore.fetchOrCreateShare(channel: newChannel)
+            if let newChannel = newChannel {
+                let (newShare, _) = try await ChannelStore.fetchOrCreateShare(channel: newChannel)
+                share = newShare
+            }
             loadingShare = false
-            share = newShare
         } catch {
             debugPrint("ERROR: Failed to create Channel: \(error)")
         }

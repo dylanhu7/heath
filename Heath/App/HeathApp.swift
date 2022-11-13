@@ -18,7 +18,7 @@ struct HeathApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack<NavigationPath, ContentView> {
+            NavigationStack {
                 ContentView(channels: $store.channels)
             }
             .task {

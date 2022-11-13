@@ -13,6 +13,7 @@ struct MessageComposeView: UIViewControllerRepresentable {
     class Coordinator: NSObject, MFMessageComposeViewControllerDelegate {
         func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
             controller.dismiss(animated: true)
+            parent.result = result
         }
         
         var parent: MessageComposeView
@@ -24,6 +25,7 @@ struct MessageComposeView: UIViewControllerRepresentable {
     
     let contact: CNContact?
     let message: String?
+    @Binding var result: MessageComposeResult?
     
     func makeUIViewController(context: Context) -> MFMessageComposeViewController {
         let controller = MFMessageComposeViewController()
@@ -55,7 +57,7 @@ struct MessageComposeView_Previews: PreviewProvider {
         VStack {
             
         }.sheet(isPresented: .constant(true)) {
-            MessageComposeView(contact: nil, message: "")
+            MessageComposeView(contact: nil, message: "", result: .constant(MessageComposeResult(rawValue: 1)!))
         }
     }
 }

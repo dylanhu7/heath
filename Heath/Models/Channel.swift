@@ -15,6 +15,13 @@ struct Channel: Identifiable, Codable {
     let ownerName: String
     let transactions: [Transaction]
     
+    init(name: String, id: String, ownerName: String, transactions: [Transaction]) {
+        self.name = name
+        self.id = id
+        self.ownerName = ownerName
+        self.transactions = transactions
+    }
+    
     init(zone: CKRecordZone, transactions: [Transaction]) {
         let contactStore = CNContactStore()
         self.transactions = transactions
@@ -27,4 +34,11 @@ struct Channel: Identifiable, Codable {
             self.name = ""
         }
     }
+}
+
+extension Channel {
+    static let sampleData: [Channel] = [
+        Channel(name: "Johnny Appleseed", id: "1", ownerName: "WQIOGIOR", transactions: []),
+        Channel(name: "Heath Ledger", id: "2", ownerName: "WQIOGIOR", transactions: [])
+    ]
 }

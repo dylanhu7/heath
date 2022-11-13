@@ -41,6 +41,6 @@ struct ContactPicker: UIViewControllerRepresentable {
 
 struct ContactPicker_Previews: PreviewProvider {
    static var previews: some View {
-       ContactPicker(contact: .constant(nil))
+       ContactPicker(contact: .constant(CNContact()))
    }
 }

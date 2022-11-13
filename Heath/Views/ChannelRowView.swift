@@ -8,19 +8,23 @@
 import SwiftUI
 
 struct ChannelRowView: View {
-    let channel: Channel
+    @Binding var channel: Channel
     let shareable: Bool
     var body: some View {
-        HStack {
-            Text(channel.name)
+        NavigationLink(destination: {
+            ChannelView(channel: $channel)
+        }) {
+            HStack {
+                Text(channel.name)
+            }
         }
     }
 }
 
 struct ChannelRowView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            
+        List {
+            ChannelRowView(channel: .constant(Channel.sampleData[0]), shareable: false)
         }
     }
 }
