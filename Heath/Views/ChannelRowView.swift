@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ChannelRowView: View {
-    @Binding var channel: Channel
+    let channel: Channel
+    let shareable: Bool
     var body: some View {
         HStack {
             Text(channel.name)
         }
-        
     }
 }
 

@@ -8,12 +8,11 @@
 import Foundation
 import CloudKit
 
-struct Transaction: Identifiable {
-    let id: UUID
+struct Transaction: Identifiable, Codable {
+    let id: String
     let amount: Double
     let split: Double
     let date: Date?
-    let associatedRecord: CKRecord
 }
 
 extension Transaction {
@@ -25,10 +24,9 @@ extension Transaction {
             return nil
         }
 
-        self.id = UUID()
+        self.id = record.recordID.recordName
         self.amount = amount
         self.split = split
         self.date = record.creationDate
-        self.associatedRecord = record
     }
 }

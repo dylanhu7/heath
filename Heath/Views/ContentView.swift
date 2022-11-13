@@ -10,16 +10,12 @@ import Contacts
 import CloudKit
 
 struct ContentView: View {
-    @EnvironmentObject private var vm: ViewModel
+    @Binding var channels: [Channel]
     @State private var isAddingContact = false
     @State private var contact: CNContact?
     @State private var share: CKShare?
     @State private var loadingShare = false
     @State private var isSharing = false
-    
-    init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
-    }
     
     var body: some View {
         List {
@@ -29,7 +25,7 @@ struct ContentView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button { Task {
-                    try await vm.refresh()
+                    channels = try await ChannelStore.refresh()
                 } } label: { Image(systemName: "arrow.clockwise") }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -55,22 +51,14 @@ struct ContentView: View {
     private func createChannel() async {
         guard let contact = contact else { return }
         do {
-            let newChannel = try await vm.addChannel(channel: contact.identifier)
+            let newChannel = try await ChannelStore.addChannel(id: contact.identifier)
             isSharing = true
             loadingShare = true
-            let (newShare, _) = try await vm.fetchOrCreateShare(channel: newChannel)
+            let (newShare, _) = try await ChannelStore.fetchOrCreateShare(channel: newChannel)
             loadingShare = false
             share = newShare
         } catch {
             debugPrint("ERROR: Failed to create Channel: \(error)")
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            ContentView()
         }
     }
 }

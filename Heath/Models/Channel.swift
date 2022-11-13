@@ -9,23 +9,17 @@ import Foundation
 import CloudKit
 import Contacts
 
-struct Channel: Identifiable {
-    var name: String
-    let zone: CKRecordZone
+struct Channel: Identifiable, Codable {
+    let name: String
+    let id: String
+    let ownerName: String
     let transactions: [Transaction]
-    var id: String {
-        zone.zoneID.zoneName
-    }
     
     init(zone: CKRecordZone, transactions: [Transaction]) {
         let contactStore = CNContactStore()
-        self.zone = zone
         self.transactions = transactions
-        let keysToFetch = [
-            CNContactGivenNameKey as CNKeyDescriptor,
-            CNContactFamilyNameKey as CNKeyDescriptor,
-            CNContactNicknameKey as CNKeyDescriptor
-        ]
+        self.id = zone.zoneID.zoneName
+        self.ownerName = zone.zoneID.ownerName
         do {
             let contact = try contactStore.unifiedContact(withIdentifier: zone.zoneID.zoneName, keysToFetch: [CNContactFormatter.descriptorForRequiredKeys(for: CNContactFormatterStyle.fullName)])
             self.name = CNContactFormatter.string(from: contact, style: CNContactFormatterStyle.fullName) ?? ""

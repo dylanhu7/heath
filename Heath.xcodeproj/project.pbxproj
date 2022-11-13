@@ -12,9 +12,12 @@
 		FC2EB67E291168A2004E766C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC2EB67D291168A2004E766C /* Assets.xcassets */; };
 		FC2EB681291168A2004E766C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC2EB680291168A2004E766C /* Preview Assets.xcassets */; };
 		FC2EB68D29116E4A004E766C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2EB68C29116E4A004E766C /* Channel.swift */; };
+		FC6412BA2920380A00E60DDE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412B92920380A00E60DDE /* ErrorView.swift */; };
+		FC6412BC2920384A00E60DDE /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */; };
 		FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E70291F719200AFB757 /* MessageComposeView.swift */; };
 		FC8C8E732920072800AFB757 /* ChannelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E722920072800AFB757 /* ChannelRowView.swift */; };
-		FC9ACA0A291C77D300061440 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ACA09291C77D300061440 /* ViewModel.swift */; };
+		FC8C8E78292028A900AFB757 /* ChannelsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E77292028A900AFB757 /* ChannelsListView.swift */; };
+		FC8C8E7A292031BC00AFB757 /* ChannelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E79292031BC00AFB757 /* ChannelStore.swift */; };
 		FC9ACA0C291C7E9D00061440 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ACA0B291C7E9D00061440 /* Config.swift */; };
 		FCCB53CF291825FC00EB136B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB53CE291825FC00EB136B /* CloudKit.framework */; };
 		FCCB53D42918283600EB136B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB53D32918283600EB136B /* Transaction.swift */; };
@@ -28,9 +31,12 @@
 		FC2EB67D291168A2004E766C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC2EB680291168A2004E766C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FC2EB68C29116E4A004E766C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		FC6412B92920380A00E60DDE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		FC8C8E70291F719200AFB757 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		FC8C8E722920072800AFB757 /* ChannelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRowView.swift; sourceTree = "<group>"; };
-		FC9ACA09291C77D300061440 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		FC8C8E77292028A900AFB757 /* ChannelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsListView.swift; sourceTree = "<group>"; };
+		FC8C8E79292031BC00AFB757 /* ChannelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelStore.swift; sourceTree = "<group>"; };
 		FC9ACA0B291C7E9D00061440 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		FCCB53CE291825FC00EB136B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FCCB53D02918261E00EB136B /* Heath.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Heath.entitlements; sourceTree = "<group>"; };
@@ -72,7 +78,6 @@
 			children = (
 				FCCB53D12918272500EB136B /* App */,
 				FCCB53D22918273D00EB136B /* Views */,
-				FC9ACA08291C77BA00061440 /* ViewModels */,
 				FC2EB68B29116DDA004E766C /* Models */,
 				FC2EB67D291168A2004E766C /* Assets.xcassets */,
 				FC2EB67F291168A2004E766C /* Preview Content */,
@@ -93,16 +98,9 @@
 			children = (
 				FC2EB68C29116E4A004E766C /* Channel.swift */,
 				FCCB53D32918283600EB136B /* Transaction.swift */,
+				FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		FC9ACA08291C77BA00061440 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				FC9ACA09291C77D300061440 /* ViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FCCB53CD291825FC00EB136B /* Frameworks */ = {
@@ -119,6 +117,7 @@
 				FCCB53D02918261E00EB136B /* Heath.entitlements */,
 				FC2EB679291168A1004E766C /* HeathApp.swift */,
 				FC9ACA0B291C7E9D00061440 /* Config.swift */,
+				FC8C8E79292031BC00AFB757 /* ChannelStore.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -130,6 +129,8 @@
 				FCCB53D7291B084300EB136B /* ContactPicker.swift */,
 				FC8C8E70291F719200AFB757 /* MessageComposeView.swift */,
 				FC8C8E722920072800AFB757 /* ChannelRowView.swift */,
+				FC8C8E77292028A900AFB757 /* ChannelsListView.swift */,
+				FC6412B92920380A00E60DDE /* ErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,14 +205,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6412BC2920384A00E60DDE /* ErrorWrapper.swift in Sources */,
+				FC8C8E7A292031BC00AFB757 /* ChannelStore.swift in Sources */,
+				FC8C8E78292028A900AFB757 /* ChannelsListView.swift in Sources */,
 				FC2EB68D29116E4A004E766C /* Channel.swift in Sources */,
 				FCCB53D42918283600EB136B /* Transaction.swift in Sources */,
 				FC9ACA0C291C7E9D00061440 /* Config.swift in Sources */,
 				FCCB53D8291B084300EB136B /* ContactPicker.swift in Sources */,
 				FC2EB67C291168A1004E766C /* ContentView.swift in Sources */,
+				FC6412BA2920380A00E60DDE /* ErrorView.swift in Sources */,
 				FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */,
 				FC2EB67A291168A1004E766C /* HeathApp.swift in Sources */,
-				FC9ACA0A291C77D300061440 /* ViewModel.swift in Sources */,
 				FC8C8E732920072800AFB757 /* ChannelRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +353,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -380,6 +385,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
