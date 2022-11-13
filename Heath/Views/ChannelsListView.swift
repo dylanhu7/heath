@@ -20,6 +20,8 @@ struct ChannelsListView: View {
 
 struct ChannelsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChannelsListView(channels: .constant(Channel.sampleData))
+        NavigationStack {
+            ChannelsListView(channels: .constant(Channel.sampleData))
+        }
     }
 }

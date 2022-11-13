@@ -12,6 +12,7 @@ import MessageUI
 
 struct ContentView: View {
     @Binding var channels: [Channel]
+    @Environment(\.scenePhase) private var scenePhase
     @State private var isAddingContact = false
     @State private var contact: CNContact?
     @State private var share: CKShare?
@@ -19,6 +20,7 @@ struct ContentView: View {
     @State private var isSharing = false
     @State private var newChannel: Channel?
     @State private var messageComposeResult: MessageComposeResult?
+    let saveAction: () -> Void
     
     var body: some View {
         ChannelsListView(channels: $channels)
@@ -53,6 +55,11 @@ struct ContentView: View {
                     ProgressView()
                 } else if let contact1 = contact, let url = share?.url {
                     MessageComposeView(contact: contact1, message: url.absoluteString, result: $messageComposeResult)
+                }
+            }
+            .onChange(of: scenePhase) { phase in
+                if phase == .inactive {
+                    saveAction()
                 }
             }
     }

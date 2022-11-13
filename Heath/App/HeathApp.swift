@@ -19,7 +19,15 @@ struct HeathApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                ContentView(channels: $store.channels)
+                ContentView(channels: $store.channels) {
+                    Task {
+                        do {
+                            try await ChannelStore.save(channels: store.channels)
+                        } catch {
+                            errorWrapper = ErrorWrapper(error: error, guidance: "Try again later.")
+                        }
+                    }
+                }
             }
             .task {
                 do {
