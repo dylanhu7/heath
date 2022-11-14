@@ -13,11 +13,11 @@ import MessageUI
 struct ContentView: View {
     @Binding var channels: [Channel]
     @Environment(\.scenePhase) private var scenePhase
-    @State private var isAddingContact = false
+    @State private var isChoosingContact = false
     @State private var contact: CNContact?
     @State private var share: CKShare?
     @State private var loadingShare = false
-    @State private var isSharing = false
+    @State private var isSendingMessage = false
     @State private var newChannel: Channel?
     @State private var messageComposeResult: MessageComposeResult?
     let saveAction: () -> Void
@@ -32,17 +32,18 @@ struct ContentView: View {
                     } } label: { Image(systemName: "arrow.clockwise") }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { isAddingContact = true }) { Image(systemName: "plus") }
+                    Button(action: { isChoosingContact = true }) { Image(systemName: "plus") }
                 }
             }
-            .sheet(isPresented: $isAddingContact, onDismiss: {
+            .sheet(isPresented: $isChoosingContact, onDismiss: {
                 Task {
                     await createChannel()
                 }
-            }) {
+            }, content: {
                 ContactPicker(contact: $contact)
-            }
-            .sheet(isPresented: $isSharing, onDismiss: { [messageComposeResult] in
+            })
+            .sheet(isPresented: $isSendingMessage, onDismiss: { [messageComposeResult] in
+                contact = nil
                 if let messageComposeResult = messageComposeResult {
                     debugPrint(messageComposeResult.rawValue)
                     if messageComposeResult == MessageComposeResult.sent, let newChannel = newChannel {
@@ -50,13 +51,13 @@ struct ContentView: View {
                         debugPrint(channels)
                     }
                 }
-            }) { [loadingShare, contact, share] in
+            }, content: { [loadingShare, contact, share] in
                 if loadingShare {
                     ProgressView()
-                } else if let contact1 = contact, let url = share?.url {
-                    MessageComposeView(contact: contact1, message: url.absoluteString, result: $messageComposeResult)
+                } else if let contact = contact, let url = share?.url {
+                    MessageComposeView(contact: contact, message: url.absoluteString, result: $messageComposeResult)
                 }
-            }
+            })
             .onChange(of: scenePhase) { phase in
                 if phase == .inactive {
                     saveAction()
@@ -68,7 +69,7 @@ struct ContentView: View {
         guard let contact = contact else { return }
         do {
             newChannel = try await ChannelStore.addChannel(id: contact.identifier)
-            isSharing = true
+            isSendingMessage = true
             loadingShare = true
             if let newChannel = newChannel {
                 let (newShare, _) = try await ChannelStore.fetchOrCreateShare(channel: newChannel, contact: contact)
