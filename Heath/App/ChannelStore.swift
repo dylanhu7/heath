@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CloudKit
+import Contacts
 
 class ChannelStore: ObservableObject {
     enum ChannelStoreError {
@@ -19,6 +20,7 @@ class ChannelStore: ObservableObject {
     static var container = CKContainer(identifier: Config.containerIdentifier)
     /// This project uses the user's private database.
     static private var database = container.privateCloudDatabase
+    static var contactStore = CNContactStore()
     
     /// Fetches channels from the remote databases and updates local state.
     static func refresh() async throws -> [Channel] {
@@ -83,10 +85,16 @@ class ChannelStore: ObservableObject {
     /// Fetches an existing `CKShare` on a channel zone, or creates a new one in preparation to share with another user.
     /// - Parameters:
     ///   - channel: `Channel` to share.
-    ///   - completionHandler: Handler to process a `success` or `failure` result.
-    static func fetchOrCreateShare(channel: Channel) async throws -> (CKShare, CKContainer) {
-        let zone = try await database.recordZone(for: CKRecordZone.ID(__zoneName: channel.id, ownerName: channel.ownerName))
+    static func fetchOrCreateShare(channel: Channel, contact: CNContact) async throws -> (CKShare, CKContainer) {
+        let zoneID = CKRecordZone.ID(__zoneName: channel.id, ownerName: channel.ownerName)
+        let zone = try await database.recordZone(for: zoneID)
         let share = CKShare(recordZoneID: zone.zoneID)
+        if let participant = await createShareParticipant(contact: contact) {
+            debugPrint("Participant: ", participant)
+            share.addParticipant(participant)
+        } else {
+            debugPrint("Did not find participant")
+        }
         share[CKShare.SystemFieldKey.title] = "Heath: \(channel.name)"
         let (saveResults, _) = try await database.modifyRecords(saving: [share], deleting: [])
         debugPrint(saveResults)
@@ -153,6 +161,74 @@ class ChannelStore: ObservableObject {
         
         return allChannels
     }
+    
+    private static func createShareParticipant(contact: CNContact) async -> CKShare.Participant? {
+        var lookupInfo: CKUserIdentity.LookupInfo?
+        if contact.phoneNumbers.count > 0 {
+            lookupInfo = CKUserIdentity.LookupInfo(phoneNumber: contact.phoneNumbers[0].value.stringValue)
+        } else if contact.emailAddresses.count > 0 {
+            lookupInfo = CKUserIdentity.LookupInfo(emailAddress: contact.emailAddresses[0].value as String)
+        }
+        guard let lookupInfo = lookupInfo else { return nil }
+        let participants = await fetchParticipants(for: [lookupInfo])
+        switch participants {
+        case .success(let participants):
+            debugPrint("Participants", participants)
+            if !participants.isEmpty {
+                return participants[0]
+            }
+        case .failure(let error):
+            debugPrint("ERROR: fetching CKShare.Participant failed: \(error)")
+            return nil
+        }
+        return nil
+    }
+    
+    private static func fetchParticipants(for lookupInfos: [CKUserIdentity.LookupInfo]) async -> Result<[CKShare.Participant], Error> {
+        await withCheckedContinuation { continuation in
+            fetchParticipants(for: lookupInfos) { messages in
+                continuation.resume(returning: messages)
+            }
+        }
+    }
+    
+    private static func fetchParticipants(for lookupInfos: [CKUserIdentity.LookupInfo],
+                                          completion: @escaping (Result<[CKShare.Participant], Error>) -> Void) {
+        var participants = [CKShare.Participant]()
+        
+        // Create the operation using the lookup objects
+        // that the caller provides to the method.
+        let operation = CKFetchShareParticipantsOperation(
+            userIdentityLookupInfos: lookupInfos)
+        
+        // Collect the participants as CloudKit generates them.
+        operation.perShareParticipantResultBlock = { _, result in
+            switch result {
+            case .success(let participant):
+                participants.append(participant)
+            case .failure(let error):
+                debugPrint("ERROR: failed to fetch participant: \(error)")
+            }
+        }
+        
+        // If the operation fails, return the error to the caller.
+        // Otherwise, return the array of participants.
+        operation.fetchShareParticipantsResultBlock = { result in
+            switch result {
+            case .success():
+                completion(.success(participants))
+            case.failure(let error):
+                debugPrint("ERROR: failed to fetch participant: \(error)")
+                completion(.failure(error))
+            }
+        }
+        
+        // Set an appropriate QoS and add the operation to the
+        // container's queue to execute it.
+        operation.qualityOfService = .userInitiated
+        container.add(operation)
+    }
+    
     
     private static func fileURL() throws -> URL {
         try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)

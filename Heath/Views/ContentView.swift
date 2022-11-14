@@ -71,7 +71,7 @@ struct ContentView: View {
             isSharing = true
             loadingShare = true
             if let newChannel = newChannel {
-                let (newShare, _) = try await ChannelStore.fetchOrCreateShare(channel: newChannel)
+                let (newShare, _) = try await ChannelStore.fetchOrCreateShare(channel: newChannel, contact: contact)
                 share = newShare
             }
             loadingShare = false

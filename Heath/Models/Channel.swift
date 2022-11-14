@@ -23,12 +23,11 @@ struct Channel: Identifiable, Codable {
     }
     
     init(zone: CKRecordZone, transactions: [Transaction]) {
-        let contactStore = CNContactStore()
         self.transactions = transactions
         self.id = zone.zoneID.zoneName
         self.ownerName = zone.zoneID.ownerName
         do {
-            let contact = try contactStore.unifiedContact(withIdentifier: zone.zoneID.zoneName, keysToFetch: [CNContactFormatter.descriptorForRequiredKeys(for: CNContactFormatterStyle.fullName)])
+            let contact = try ChannelStore.contactStore.unifiedContact(withIdentifier: zone.zoneID.zoneName, keysToFetch: [CNContactFormatter.descriptorForRequiredKeys(for: CNContactFormatterStyle.fullName)])
             self.name = CNContactFormatter.string(from: contact, style: CNContactFormatterStyle.fullName) ?? ""
         } catch {
             self.name = ""
