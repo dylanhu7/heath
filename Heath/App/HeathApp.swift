@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct HeathApp: App {
+    @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
     @StateObject private var store = ChannelStore()
     @State private var errorWrapper: ErrorWrapper?
     

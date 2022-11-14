@@ -5,7 +5,6 @@
 //  Created by Dylan Hu on 11/12/22.
 //
 
-import Foundation
 import SwiftUI
 import CloudKit
 import Contacts

@@ -5,7 +5,6 @@
 //  Created by Dylan Hu on 11/6/22.
 //
 
-import Foundation
 import CloudKit
 
 struct Transaction: Identifiable, Codable {

@@ -15,6 +15,8 @@
 		FC6412BA2920380A00E60DDE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412B92920380A00E60DDE /* ErrorView.swift */; };
 		FC6412BC2920384A00E60DDE /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */; };
 		FC6412BE292082F200E60DDE /* ChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412BD292082F200E60DDE /* ChannelView.swift */; };
+		FC6412C12921DAFD00E60DDE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412C02921DAFD00E60DDE /* SceneDelegate.swift */; };
+		FC6412C32921DDE600E60DDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412C22921DDE600E60DDE /* AppDelegate.swift */; };
 		FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E70291F719200AFB757 /* MessageComposeView.swift */; };
 		FC8C8E732920072800AFB757 /* ChannelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E722920072800AFB757 /* ChannelRowView.swift */; };
 		FC8C8E78292028A900AFB757 /* ChannelsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E77292028A900AFB757 /* ChannelsListView.swift */; };
@@ -36,6 +38,8 @@
 		FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		FC6412BD292082F200E60DDE /* ChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelView.swift; sourceTree = "<group>"; };
 		FC6412BF2921D60700E60DDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC6412C02921DAFD00E60DDE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FC6412C22921DDE600E60DDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC8C8E70291F719200AFB757 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		FC8C8E722920072800AFB757 /* ChannelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRowView.swift; sourceTree = "<group>"; };
 		FC8C8E77292028A900AFB757 /* ChannelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsListView.swift; sourceTree = "<group>"; };
@@ -117,11 +121,13 @@
 		FCCB53D12918272500EB136B /* App */ = {
 			isa = PBXGroup;
 			children = (
+				FC2EB679291168A1004E766C /* HeathApp.swift */,
+				FC8C8E79292031BC00AFB757 /* ChannelStore.swift */,
+				FC6412C22921DDE600E60DDE /* AppDelegate.swift */,
+				FC6412C02921DAFD00E60DDE /* SceneDelegate.swift */,
+				FC9ACA0B291C7E9D00061440 /* Config.swift */,
 				FC6412BF2921D60700E60DDE /* Info.plist */,
 				FCCB53D02918261E00EB136B /* Heath.entitlements */,
-				FC2EB679291168A1004E766C /* HeathApp.swift */,
-				FC9ACA0B291C7E9D00061440 /* Config.swift */,
-				FC8C8E79292031BC00AFB757 /* ChannelStore.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -134,8 +140,8 @@
 				FC8C8E70291F719200AFB757 /* MessageComposeView.swift */,
 				FC8C8E722920072800AFB757 /* ChannelRowView.swift */,
 				FC8C8E77292028A900AFB757 /* ChannelsListView.swift */,
-				FC6412B92920380A00E60DDE /* ErrorView.swift */,
 				FC6412BD292082F200E60DDE /* ChannelView.swift */,
+				FC6412B92920380A00E60DDE /* ErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,7 +217,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC6412BC2920384A00E60DDE /* ErrorWrapper.swift in Sources */,
+				FC6412C12921DAFD00E60DDE /* SceneDelegate.swift in Sources */,
 				FC8C8E7A292031BC00AFB757 /* ChannelStore.swift in Sources */,
+				FC6412C32921DDE600E60DDE /* AppDelegate.swift in Sources */,
 				FC8C8E78292028A900AFB757 /* ChannelsListView.swift in Sources */,
 				FC2EB68D29116E4A004E766C /* Channel.swift in Sources */,
 				FCCB53D42918283600EB136B /* Transaction.swift in Sources */,

@@ -5,7 +5,6 @@
 //  Created by Dylan Hu on 11/1/22.
 //
 
-import Foundation
 import CloudKit
 import Contacts
 
