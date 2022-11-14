@@ -35,6 +35,7 @@
 		FC6412B92920380A00E60DDE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		FC6412BD292082F200E60DDE /* ChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelView.swift; sourceTree = "<group>"; };
+		FC6412BF2921D60700E60DDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC8C8E70291F719200AFB757 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		FC8C8E722920072800AFB757 /* ChannelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRowView.swift; sourceTree = "<group>"; };
 		FC8C8E77292028A900AFB757 /* ChannelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsListView.swift; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 		FCCB53D12918272500EB136B /* App */ = {
 			isa = PBXGroup;
 			children = (
+				FC6412BF2921D60700E60DDE /* Info.plist */,
 				FCCB53D02918261E00EB136B /* Heath.entitlements */,
 				FC2EB679291168A1004E766C /* HeathApp.swift */,
 				FC9ACA0B291C7E9D00061440 /* Config.swift */,
@@ -353,6 +355,9 @@
 				DEVELOPMENT_TEAM = AK5ZA9F5W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Heath/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSContactsUsageDescription = "For accessing names, profile pictures, and contact information of those you create ledgers with.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -385,6 +390,9 @@
 				DEVELOPMENT_TEAM = AK5ZA9F5W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Heath/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSContactsUsageDescription = "For accessing names, profile pictures, and contact information of those you create ledgers with.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
