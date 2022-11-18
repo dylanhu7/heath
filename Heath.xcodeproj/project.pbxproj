@@ -17,6 +17,7 @@
 		FC6412BE292082F200E60DDE /* ChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412BD292082F200E60DDE /* ChannelView.swift */; };
 		FC6412C12921DAFD00E60DDE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412C02921DAFD00E60DDE /* SceneDelegate.swift */; };
 		FC6412C32921DDE600E60DDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412C22921DDE600E60DDE /* AppDelegate.swift */; };
+		FC6412C52926785F00E60DDE /* ImageFromData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412C42926785F00E60DDE /* ImageFromData.swift */; };
 		FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E70291F719200AFB757 /* MessageComposeView.swift */; };
 		FC8C8E732920072800AFB757 /* ChannelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E722920072800AFB757 /* ChannelRowView.swift */; };
 		FC8C8E78292028A900AFB757 /* ChannelsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E77292028A900AFB757 /* ChannelsListView.swift */; };
@@ -40,6 +41,7 @@
 		FC6412BF2921D60700E60DDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC6412C02921DAFD00E60DDE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FC6412C22921DDE600E60DDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FC6412C42926785F00E60DDE /* ImageFromData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFromData.swift; sourceTree = "<group>"; };
 		FC8C8E70291F719200AFB757 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		FC8C8E722920072800AFB757 /* ChannelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRowView.swift; sourceTree = "<group>"; };
 		FC8C8E77292028A900AFB757 /* ChannelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsListView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				FC2EB68C29116E4A004E766C /* Channel.swift */,
 				FCCB53D32918283600EB136B /* Transaction.swift */,
 				FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */,
+				FC6412C42926785F00E60DDE /* ImageFromData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */,
 				FC2EB67A291168A1004E766C /* HeathApp.swift in Sources */,
 				FC8C8E732920072800AFB757 /* ChannelRowView.swift in Sources */,
+				FC6412C52926785F00E60DDE /* ImageFromData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

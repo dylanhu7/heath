@@ -23,6 +23,7 @@ struct ContentView: View {
     let saveAction: () -> Void
     
     var body: some View {
+        
         ChannelsListView(channels: $channels)
             .navigationTitle("Heath")
             .toolbar {
@@ -37,7 +38,16 @@ struct ContentView: View {
             }
             .sheet(isPresented: $isChoosingContact, onDismiss: {
                 Task {
-                    await createChannel()
+                    guard let contact = contact else { return }
+                    do {
+                        loadingShare = true
+                        (newChannel, share) = try await ChannelStore.addChannel(contact: contact)
+                        loadingShare = false
+                        isSendingMessage = true
+                    } catch {
+                        debugPrint("ERROR: Failed to create Channel: \(error)")
+                    }
+                    
                 }
             }, content: {
                 ContactPicker(contact: $contact)
@@ -45,10 +55,8 @@ struct ContentView: View {
             .sheet(isPresented: $isSendingMessage, onDismiss: { [messageComposeResult] in
                 contact = nil
                 if let messageComposeResult = messageComposeResult {
-                    debugPrint(messageComposeResult.rawValue)
                     if messageComposeResult == MessageComposeResult.sent, let newChannel = newChannel {
                         channels.append(newChannel)
-                        debugPrint(channels)
                     }
                 }
             }, content: { [loadingShare, contact, share] in
@@ -64,20 +72,12 @@ struct ContentView: View {
                 }
             }
     }
-    
-    private func createChannel() async {
-        guard let contact = contact else { return }
-        do {
-            newChannel = try await ChannelStore.addChannel(id: contact.identifier)
-            isSendingMessage = true
-            loadingShare = true
-            if let newChannel = newChannel {
-                let (newShare, _) = try await ChannelStore.fetchOrCreateShare(channel: newChannel, contact: contact)
-                share = newShare
-            }
-            loadingShare = false
-        } catch {
-            debugPrint("ERROR: Failed to create Channel: \(error)")
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            ContentView(channels: .constant(Channel.sampleData), saveAction: {})
         }
     }
 }

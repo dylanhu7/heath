@@ -15,6 +15,7 @@ struct HeathApp: App {
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.purple]
     }
     
     var body: some Scene {

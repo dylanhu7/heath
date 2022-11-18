@@ -13,7 +13,7 @@ import CoreData
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func windowScene(_ windowScene: UIWindowScene, userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {
         guard cloudKitShareMetadata.containerIdentifier == Config.containerIdentifier else {
-            print("Shared container identifier \(cloudKitShareMetadata.containerIdentifier) did not match known identifier.")
+            debugPrint("Shared container identifier \(cloudKitShareMetadata.containerIdentifier) did not match known identifier.")
             return
         }
         

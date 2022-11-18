@@ -10,8 +10,10 @@ import CloudKit
 import Contacts
 
 class ChannelStore: ObservableObject {
-    enum ChannelStoreError {
+    enum ChannelStoreError: Error {
         case invalidRemoteShare
+        case participantNotFound
+        case createShareFailure
     }
     
     @Published var channels: [Channel] = []
@@ -47,15 +49,31 @@ class ChannelStore: ObservableObject {
     /// Adds a new Channel to the database.
     /// - Parameters:
     ///   - id: Identifier of the contact the `Channel` will be shared with.
-    static func addChannel(id: String) async throws -> Channel {
+    static func addChannel(contact: CNContact) async throws -> (Channel, CKShare) {
+        guard let participant = await createShareParticipant(contact: contact) else {
+            debugPrint("ERROR: Did not find participant")
+            throw ChannelStoreError.participantNotFound
+        }
+        guard let userRecordName = participant.userIdentity.userRecordID?.recordName else {
+            debugPrint("ERROR: Found participant does not have user record")
+            throw ChannelStoreError.participantNotFound
+        }
+        let zone = CKRecordZone(zoneName: userRecordName)
         do {
-            let zone = CKRecordZone(zoneName: id)
             try await database.save(zone)
-            return Channel(zone: zone, transactions: [])
         } catch {
             debugPrint("ERROR: Failed to create new Channel: \(error)")
             throw error
         }
+        let channel = Channel(from: zone)
+        var share: CKShare
+        do {
+            share = try await fetchOrCreateShare(channel: channel, participant: participant)
+        } catch {
+            debugPrint("ERROR: Failed to create new CKShare: \(error)")
+            throw ChannelStoreError.createShareFailure
+        }
+        return (channel, share)
     }
     
     /// Adds a new Transaction to the database.
@@ -68,12 +86,10 @@ class ChannelStore: ObservableObject {
             // Ensure zone exists first.
             let zone = CKRecordZone(zoneName: channel)
             try await database.save(zone)
-            
             let id = CKRecord.ID(zoneID: zone.zoneID)
             let transactionRecord = CKRecord(recordType: "Transaction", recordID: id)
             transactionRecord["amount"] = amount
             transactionRecord["split"] = split
-            
             try await database.save(transactionRecord)
         } catch {
             debugPrint("ERROR: Failed to save new Transaction: \(error)")
@@ -84,20 +100,15 @@ class ChannelStore: ObservableObject {
     /// Fetches an existing `CKShare` on a channel zone, or creates a new one in preparation to share with another user.
     /// - Parameters:
     ///   - channel: `Channel` to share.
-    static func fetchOrCreateShare(channel: Channel, contact: CNContact) async throws -> (CKShare, CKContainer) {
+    static func fetchOrCreateShare(channel: Channel, participant: CKShare.Participant) async throws -> CKShare {
         let zoneID = CKRecordZone.ID(__zoneName: channel.id, ownerName: channel.ownerName)
         let zone = try await database.recordZone(for: zoneID)
         let share = CKShare(recordZoneID: zone.zoneID)
-        if let participant = await createShareParticipant(contact: contact) {
-            debugPrint("Participant: ", participant)
-            share.addParticipant(participant)
-        } else {
-            debugPrint("Did not find participant")
-        }
+        share.addParticipant(participant)
         share[CKShare.SystemFieldKey.title] = "Heath: \(channel.name)"
         let (saveResults, _) = try await database.modifyRecords(saving: [share], deleting: [])
         debugPrint(saveResults)
-        return (share, container)
+        return share
     }
     
     /// Fetches `Channel`s for a given set of zones in a given database scope.
@@ -154,7 +165,7 @@ class ChannelStore: ObservableObject {
             
             // As each result comes back, append it to a combined array to finally return.
             for try await (zone, transactionsResult) in group {
-                allChannels.append(Channel(zone: zone, transactions: transactionsResult))
+                allChannels.append(Channel(from: zone, with: transactionsResult))
             }
         }
         
@@ -174,6 +185,7 @@ class ChannelStore: ObservableObject {
         case .success(let participants):
             debugPrint("Participants", participants)
             if !participants.isEmpty {
+                debugPrint(participants[0].description)
                 return participants[0]
             }
         case .failure(let error):
@@ -258,8 +270,11 @@ class ChannelStore: ObservableObject {
                     return
                 }
                 let decodedChannels = try JSONDecoder().decode([Channel].self, from: file.availableData)
+                let decodedChannelsWithContacts = decodedChannels.map {
+                    syncChannelWithContacts(channel: $0)
+                }
                 DispatchQueue.main.async {
-                    completion(.success(decodedChannels))
+                    completion(.success(decodedChannelsWithContacts))
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -298,5 +313,15 @@ class ChannelStore: ObservableObject {
                 }
             }
         }
+    }
+    
+    static func syncChannelWithContacts(channel: Channel) -> Channel {
+        var newChannel = Channel(name: channel.name, id: channel.id, ownerName: channel.ownerName, transactions: channel.transactions)
+        do {
+            newChannel.contact = try contactStore.unifiedContact(withIdentifier: channel.id, keysToFetch: Channel.keysToFetch)
+        } catch {
+            debugPrint("ERROR: could not find contact for id \(channel.id)")
+        }
+        return channel
     }
 }
