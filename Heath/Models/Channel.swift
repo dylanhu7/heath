@@ -8,11 +8,17 @@
 import CloudKit
 import Contacts
 
+/// Represents a shared or unshared Channel on this device
 struct Channel: Identifiable, Codable {
+    /// The full name of the contact with whom this channel is shared.
     let name: String
+    /// The corresponding shared zone's zoneName
     let id: String
+    /// The ID of the user who owns the record zone.
     let ownerName: String
+    /// The list of transactions within this channel.
     var transactions: [Transaction]
+    /// The contact with whom this channel is shared.
     var contact: CNContact?
 }
 
