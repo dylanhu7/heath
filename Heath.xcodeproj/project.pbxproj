@@ -11,20 +11,21 @@
 		FC2EB67C291168A1004E766C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2EB67B291168A1004E766C /* ContentView.swift */; };
 		FC2EB67E291168A2004E766C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC2EB67D291168A2004E766C /* Assets.xcassets */; };
 		FC2EB681291168A2004E766C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC2EB680291168A2004E766C /* Preview Assets.xcassets */; };
-		FC2EB68D29116E4A004E766C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2EB68C29116E4A004E766C /* Channel.swift */; };
 		FC6412BA2920380A00E60DDE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412B92920380A00E60DDE /* ErrorView.swift */; };
 		FC6412BC2920384A00E60DDE /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */; };
 		FC6412BE292082F200E60DDE /* ChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412BD292082F200E60DDE /* ChannelView.swift */; };
 		FC6412C12921DAFD00E60DDE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412C02921DAFD00E60DDE /* SceneDelegate.swift */; };
 		FC6412C32921DDE600E60DDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412C22921DDE600E60DDE /* AppDelegate.swift */; };
 		FC6412C52926785F00E60DDE /* ImageFromData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412C42926785F00E60DDE /* ImageFromData.swift */; };
+		FC6412E3292AC82200E60DDE /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412E2292AC82200E60DDE /* CoreDataStack.swift */; };
+		FC6412E8292BF6B500E60DDE /* Heath.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC6412E6292BF6B500E60DDE /* Heath.xcdatamodeld */; };
+		FC6412EB292BFFF200E60DDE /* Ledger+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412E9292BFFF200E60DDE /* Ledger+CoreDataClass.swift */; };
 		FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E70291F719200AFB757 /* MessageComposeView.swift */; };
 		FC8C8E732920072800AFB757 /* ChannelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E722920072800AFB757 /* ChannelRowView.swift */; };
 		FC8C8E78292028A900AFB757 /* ChannelsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E77292028A900AFB757 /* ChannelsListView.swift */; };
 		FC8C8E7A292031BC00AFB757 /* ChannelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E79292031BC00AFB757 /* ChannelStore.swift */; };
 		FC9ACA0C291C7E9D00061440 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ACA0B291C7E9D00061440 /* Config.swift */; };
 		FCCB53CF291825FC00EB136B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB53CE291825FC00EB136B /* CloudKit.framework */; };
-		FCCB53D42918283600EB136B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB53D32918283600EB136B /* Transaction.swift */; };
 		FCCB53D8291B084300EB136B /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB53D7291B084300EB136B /* ContactPicker.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +35,6 @@
 		FC2EB67B291168A1004E766C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FC2EB67D291168A2004E766C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC2EB680291168A2004E766C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FC2EB68C29116E4A004E766C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		FC6412B92920380A00E60DDE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		FC6412BD292082F200E60DDE /* ChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelView.swift; sourceTree = "<group>"; };
@@ -42,6 +42,9 @@
 		FC6412C02921DAFD00E60DDE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FC6412C22921DDE600E60DDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC6412C42926785F00E60DDE /* ImageFromData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFromData.swift; sourceTree = "<group>"; };
+		FC6412E2292AC82200E60DDE /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		FC6412E7292BF6B500E60DDE /* Heath.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Heath.xcdatamodel; sourceTree = "<group>"; };
+		FC6412E9292BFFF200E60DDE /* Ledger+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ledger+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FC8C8E70291F719200AFB757 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		FC8C8E722920072800AFB757 /* ChannelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRowView.swift; sourceTree = "<group>"; };
 		FC8C8E77292028A900AFB757 /* ChannelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsListView.swift; sourceTree = "<group>"; };
@@ -49,7 +52,6 @@
 		FC9ACA0B291C7E9D00061440 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		FCCB53CE291825FC00EB136B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FCCB53D02918261E00EB136B /* Heath.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Heath.entitlements; sourceTree = "<group>"; };
-		FCCB53D32918283600EB136B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		FCCB53D7291B084300EB136B /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 		FC2EB678291168A1004E766C /* Heath */ = {
 			isa = PBXGroup;
 			children = (
+				FC6412E129299E9D00E60DDE /* CoreData */,
 				FCCB53D12918272500EB136B /* App */,
 				FCCB53D22918273D00EB136B /* Views */,
 				FC2EB68B29116DDA004E766C /* Models */,
@@ -105,12 +108,20 @@
 		FC2EB68B29116DDA004E766C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FC2EB68C29116E4A004E766C /* Channel.swift */,
-				FCCB53D32918283600EB136B /* Transaction.swift */,
+				FC6412E9292BFFF200E60DDE /* Ledger+CoreDataClass.swift */,
 				FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */,
 				FC6412C42926785F00E60DDE /* ImageFromData.swift */,
+				FC6412E6292BF6B500E60DDE /* Heath.xcdatamodeld */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		FC6412E129299E9D00E60DDE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FC6412E2292AC82200E60DDE /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		FCCB53CD291825FC00EB136B /* Frameworks */ = {
@@ -224,13 +235,14 @@
 				FC8C8E7A292031BC00AFB757 /* ChannelStore.swift in Sources */,
 				FC6412C32921DDE600E60DDE /* AppDelegate.swift in Sources */,
 				FC8C8E78292028A900AFB757 /* ChannelsListView.swift in Sources */,
-				FC2EB68D29116E4A004E766C /* Channel.swift in Sources */,
-				FCCB53D42918283600EB136B /* Transaction.swift in Sources */,
+				FC6412E8292BF6B500E60DDE /* Heath.xcdatamodeld in Sources */,
 				FC9ACA0C291C7E9D00061440 /* Config.swift in Sources */,
 				FCCB53D8291B084300EB136B /* ContactPicker.swift in Sources */,
 				FC2EB67C291168A1004E766C /* ContentView.swift in Sources */,
 				FC6412BA2920380A00E60DDE /* ErrorView.swift in Sources */,
+				FC6412EB292BFFF200E60DDE /* Ledger+CoreDataClass.swift in Sources */,
 				FC6412BE292082F200E60DDE /* ChannelView.swift in Sources */,
+				FC6412E3292AC82200E60DDE /* CoreDataStack.swift in Sources */,
 				FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */,
 				FC2EB67A291168A1004E766C /* HeathApp.swift in Sources */,
 				FC8C8E732920072800AFB757 /* ChannelRowView.swift in Sources */,
@@ -447,6 +459,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FC6412E6292BF6B500E60DDE /* Heath.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FC6412E7292BF6B500E60DDE /* Heath.xcdatamodel */,
+			);
+			currentVersion = FC6412E7292BF6B500E60DDE /* Heath.xcdatamodel */;
+			path = Heath.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FC2EB66E291168A1004E766C /* Project object */;
 }

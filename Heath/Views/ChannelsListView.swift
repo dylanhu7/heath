@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct ChannelsListView: View {
-    @Binding var channels: [Channel]
+    let ledgers: FetchedResults<Ledger>
     var body: some View {
         List {
-            ForEach($channels) {
-                ChannelRowView(channel: $0, shareable: true)
+            ForEach(ledgers) {
+                ChannelRowView(ledger: $0, shareable: true)
             }
         }
     }
 }
 
-struct ChannelsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            ChannelsListView(channels: .constant(Channel.sampleData))
-        }
-    }
-}
+//struct ChannelsListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            ChannelsListView()
+//        }
+//    }
+//}

@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct HeathApp: App {
     @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
-    @StateObject private var store = ChannelStore()
     @State private var errorWrapper: ErrorWrapper?
     
     init() {
@@ -21,22 +20,7 @@ struct HeathApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                ContentView(channels: $store.channels) {
-                    Task {
-                        do {
-                            try await ChannelStore.save(channels: store.channels)
-                        } catch {
-                            errorWrapper = ErrorWrapper(error: error, guidance: "Try again later.")
-                        }
-                    }
-                }
-            }
-            .task {
-                do {
-                    store.channels = try await ChannelStore.load()
-                } catch {
-                    errorWrapper = ErrorWrapper(error: error, guidance: "Loading channels failed, try again later")
-                }
+                ContentView().environment(\.managedObjectContext, CoreDataStack.shared.context)
             }
             .sheet(item: $errorWrapper) { wrapper in
                 ErrorView(errorWrapper: wrapper)
