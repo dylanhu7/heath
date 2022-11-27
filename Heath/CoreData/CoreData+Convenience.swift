@@ -26,16 +26,8 @@ extension NSPersistentContainer {
  Contextual information for handling Core Data context save errors.
  */
 enum ContextSaveContextualInfo: String {
-    case addPost = "adding a post"
-    case deletePost = "deleting a post"
-    case batchAddPosts = "adding a batch of post"
-    case deduplicate = "deduplicating tags"
-    case updatePost = "saving post details"
-    case addTag = "adding a tag"
-    case deleteTag = "deleting a tag"
-    case addAttachment = "adding an attachment"
-    case deleteAttachment = "deleting an attachment"
-    case saveFullImage = "saving a full image"
+    case addLedger = "adding a ledger"
+    case deleteLedger = "deleting a ledger"
 }
 
 extension NSManagedObjectContext {

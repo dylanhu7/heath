@@ -10,20 +10,16 @@ import SwiftUI
 @main
 struct HeathApp: App {
     @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
-    @State private var errorWrapper: ErrorWrapper?
     
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.purple]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.accentColor)]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.accentColor)]
     }
     
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 ContentView().environment(\.managedObjectContext, CoreDataStack.shared.context)
-            }
-            .sheet(item: $errorWrapper) { wrapper in
-                ErrorView(errorWrapper: wrapper)
             }
         }
     }

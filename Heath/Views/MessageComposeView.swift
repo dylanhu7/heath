@@ -37,6 +37,7 @@ struct MessageComposeView: UIViewControllerRepresentable {
                 controller.recipients = [contact.emailAddresses[0].value as String]
             }
         }
+        controller.disableUserAttachments()
         if message != nil {
             controller.body = message
         }
@@ -57,7 +58,7 @@ struct MessageComposeView_Previews: PreviewProvider {
         VStack {
             
         }.sheet(isPresented: .constant(true)) {
-            MessageComposeView(contact: nil, message: "", result: .constant(MessageComposeResult(rawValue: 1)!))
+            MessageComposeView(contact: nil, message: nil, result: .constant(MessageComposeResult(rawValue: 1)!))
         }
     }
 }

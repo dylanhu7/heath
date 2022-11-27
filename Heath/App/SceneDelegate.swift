@@ -16,32 +16,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             debugPrint("Shared container identifier \(cloudKitShareMetadata.containerIdentifier) did not match known identifier.")
             return
         }
-        
-        // Create an operation to accept the share, running in the app's CKContainer.
-        let container = CKContainer(identifier: Config.containerIdentifier)
-        let operation = CKAcceptSharesOperation(shareMetadatas: [cloudKitShareMetadata])
-        
-        debugPrint("Accepting CloudKit Share with metadata: \(cloudKitShareMetadata)")
 
-        operation.perShareResultBlock = { metadata, result in
-            let shareRecordType = metadata.share.recordType
+        let stack = CoreDataStack.shared
 
-            switch result {
-            case .failure(let error):
-                debugPrint("Error accepting share: \(error)")
+        // Get references to the app's persistent container
+        // and shared persistent store.
+        let container = stack.persistentContainer
+        let store = stack.sharedPersistentStore
 
-            case .success:
-                debugPrint("Accepted CloudKit share with type: \(shareRecordType)")
-            }
-        }
-
-        operation.acceptSharesResultBlock = { result in
-            if case .failure(let error) = result {
-                debugPrint("Error accepting CloudKit Share: \(error)")
-            }
-        }
-
-        operation.qualityOfService = .utility
-        container.add(operation)
+        // Tell the container to accept the specified share, adding
+        // the shared objects to the shared persistent store.
+        container.acceptShareInvitations(from: [cloudKitShareMetadata],
+                                         into: store,
+                                         completion: nil)
     }
 }

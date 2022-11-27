@@ -22,14 +22,7 @@ final class CoreDataStack: ObservableObject {
             let newItem = Ledger(context: viewContext)
             newItem.createdAt = Date.now
         }
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        result.save(with: .addLedger)
         return result
     }()
     
@@ -118,20 +111,15 @@ final class CoreDataStack: ObservableObject {
 
 // MARK: - Modify Core Data
 extension CoreDataStack {
-    func save() {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                print("ViewContext save error: \(error)")
-            }
-        }
+    func save(with contextualInfo: ContextSaveContextualInfo) {
+        guard context.hasChanges else { return }
+        context.save(with: contextualInfo)
     }
     
     func delete(ledger: Ledger) {
         context.perform {
             self.context.delete(ledger)
-            self.save()
+            self.save(with: .deleteLedger)
         }
     }
 }
@@ -198,19 +186,27 @@ extension CoreDataStack {
 extension CoreDataStack {
     private func initializePersistentCloudKitContainer() -> NSPersistentCloudKitContainer {
         let container = NSPersistentCloudKitContainer(name: "Heath")
-        guard let privateStoreDescription = container.persistentStoreDescriptions.first else {
-            fatalError("#\(#function): Failed to retrieve a persistent store description.")
-        }
-        let storesURL = inMemory ? privateStoreDescription.url!.deletingLastPathComponent() : URL(fileURLWithPath: "/dev/null")
+        let privateStoreDescription = container.persistentStoreDescriptions.first!
+        let storesURL = privateStoreDescription.url!.deletingLastPathComponent()
         privateStoreDescription.url = storesURL.appendingPathComponent("private.sqlite")
         privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         
-        /// Add a second store and associate it with the CloudKit shared database
+        //Add Shared Database
+        let sharedStoreURL = privateStoreDescription.url!.deletingLastPathComponent().appendingPathComponent("shared.sqlite")
         guard let sharedStoreDescription = privateStoreDescription.copy() as? NSPersistentStoreDescription else {
-            fatalError("#\(#function): Copying the private store description returned an unexpected value.")
+            fatalError("Copying the private store description returned an unexpected value.")
         }
-        sharedStoreDescription.url = storesURL.appendingPathComponent("shared.sqlite")
+        sharedStoreDescription.url = sharedStoreURL
+        
+        if inMemory {
+            privateStoreDescription.url = URL(fileURLWithPath: "/dev/null/private")
+            sharedStoreDescription.url = URL(fileURLWithPath: "/dev/null/shared")
+        }
+        
+        privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        
         let containerIdentifier = privateStoreDescription.cloudKitContainerOptions!.containerIdentifier
         let sharedStoreOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: containerIdentifier)
         sharedStoreOptions.databaseScope = .shared

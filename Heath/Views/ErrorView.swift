@@ -11,8 +11,7 @@ struct ErrorView: View {
     let errorWrapper: ErrorWrapper
     @Environment(\.dismiss) private var dismiss
     var body: some View {
-        NavigationView {
-            
+        NavigationStack {
             VStack {
                 Text("An error has occurred!")
                     .font(.title)
@@ -25,7 +24,7 @@ struct ErrorView: View {
                 Spacer()
             }
             .padding()
-            .background(.ultraThinMaterial)
+//            .background(.ultraThinMaterial)
             .cornerRadius(16)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

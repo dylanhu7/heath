@@ -12,67 +12,69 @@ import MessageUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var context
-    @FetchRequest(fetchRequest: Ledger.all) var ledgers
-    @Environment(\.scenePhase) private var scenePhase
+    @FetchRequest(fetchRequest: Ledger.all, animation: .default) private var ledgers
     @State private var isChoosingContact = false
     @State private var contact: CNContact?
+    @State private var newLedger: Ledger?
     @State private var share: CKShare?
     @State private var loadingShare = false
     @State private var isSendingMessage = false
     @State private var messageComposeResult: MessageComposeResult?
     
     var body: some View {
-        ChannelsListView(ledgers: ledgers)
-            .navigationTitle("Heath")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button { Task {
-                        
-                    } } label: { Image(systemName: "arrow.clockwise") }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { isChoosingContact = true }) { Image(systemName: "plus") }
-                }
+        List {
+            ForEach(ledgers) { ledger in
+                LedgerRowView(ledger: ledger)
             }
-            .sheet(isPresented: $isChoosingContact, onDismiss: {
-                createLedger()
-            }, content: {
-                ContactPicker(contact: $contact)
-            })
-            .sheet(isPresented: $isSendingMessage, onDismiss: { [messageComposeResult] in
-                contact = nil
-                if (messageComposeResult == MessageComposeResult.sent) {
-                    CoreDataStack.shared.save()
-                }
-            }, content: { [loadingShare, contact, share] in
-                if loadingShare {
-                    ProgressView()
-                } else if let contact = contact, let url = share?.url {
-                    MessageComposeView(contact: contact, message: url.absoluteString, result: $messageComposeResult)
-                }
-            })
+        }
+        .navigationTitle("Heath")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: { isChoosingContact = true }) { Image(systemName: "plus") }
+            }
+        }
+        .sheet(isPresented: $isChoosingContact, onDismiss: {
+            Task {
+                await createLedger()
+            }
+        }, content: {
+            ContactPicker(contact: $contact)
+        })
+        .sheet(isPresented: $isSendingMessage, onDismiss: { [messageComposeResult] in
+            guard let newLedger else { return }
+            if messageComposeResult != MessageComposeResult.sent {
+                context.delete(newLedger)
+            }
+            CoreDataStack.shared.save(with: .addLedger)
+            contact = nil
+        }, content: { [loadingShare, contact, share] in
+            if loadingShare {
+                ProgressView()
+            } else if let contact, let url = share?.url {
+                MessageComposeView(contact: contact, message: url.absoluteString, result: $messageComposeResult)
+            }
+        })
     }
     
-    private func createLedger() {
-        guard let contact = contact else { return }
+    private func createLedger() async {
+        guard let contact else { return }
         isSendingMessage = true
         loadingShare = true
-        let ledger = Ledger(context: context)
-        ledger.title = "Test"
-        CoreDataStack.shared.persistentContainer.share([ledger], to: nil) { ids, share, container, error in
-            Task {
-                guard error == nil else {
-                    debugPrint("ERROR: failed to create share: \(error!)")
-                    return
-                }
-                guard let share = share else { return }
-                guard let participant = await createShareParticipant(contact: contact) else { return }
-                share.addParticipant(participant)
-                print("SHARE", share)
-                self.share = try await CoreDataStack.shared.persistentContainer.persistUpdatedShare(share, in: CoreDataStack.shared.privatePersistentStore)
-                print("NEWSHARE", self.share)
-                loadingShare = false
-            }
+        newLedger = Ledger(context: context)
+        guard let newLedger else { return }
+        newLedger.createdAt = Date.now
+        newLedger.contact = contact
+        do {
+            let (_, share, _) = try await CoreDataStack.shared.persistentContainer.share([newLedger], to: nil)
+            guard let participant = await createShareParticipant(contact: contact) else { return }
+            participant.permission = CKShare.ParticipantPermission.readWrite
+            share.addParticipant(participant)
+            share[CKShare.SystemFieldKey.title] = "Dylan and \(contact.givenName)"
+            share[CKShare.SystemFieldKey.shareType] = "Ledger"
+            self.share = try await CoreDataStack.shared.persistentContainer.persistUpdatedShare(share, in: CoreDataStack.shared.privatePersistentStore)
+            loadingShare = false
+        } catch {
+            debugPrint("ERROR: failed to create share: \(error)")
         }
     }
     
@@ -148,7 +150,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ContentView().environment(\.managedObjectContext, CoreDataStack.shared.context)
+            ContentView().environment(\.managedObjectContext, CoreDataStack.preview.persistentContainer.viewContext)
         }
     }
 }
