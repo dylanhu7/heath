@@ -22,6 +22,7 @@
 		FC6412F0292EB49800E60DDE /* CoreData+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6412EF292EB49800E60DDE /* CoreData+Convenience.swift */; };
 		FC6413392932D81700E60DDE /* Heath.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC6413372932D81700E60DDE /* Heath.xcdatamodeld */; };
 		FC88A9AE2933076100F71538 /* Ledger+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88A9AD2933076100F71538 /* Ledger+CoreDataClass.swift */; };
+		FC88A9B029341B3E00F71538 /* LedgerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88A9AF29341B3E00F71538 /* LedgerHeaderView.swift */; };
 		FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E70291F719200AFB757 /* MessageComposeView.swift */; };
 		FC8C8E732920072800AFB757 /* LedgerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E722920072800AFB757 /* LedgerRowView.swift */; };
 		FC9ACA0C291C7E9D00061440 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ACA0B291C7E9D00061440 /* Config.swift */; };
@@ -47,6 +48,7 @@
 		FC6412EF292EB49800E60DDE /* CoreData+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Convenience.swift"; sourceTree = "<group>"; };
 		FC6413382932D81700E60DDE /* Heath.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Heath.xcdatamodel; sourceTree = "<group>"; };
 		FC88A9AD2933076100F71538 /* Ledger+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ledger+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FC88A9AF29341B3E00F71538 /* LedgerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerHeaderView.swift; sourceTree = "<group>"; };
 		FC8C8E70291F719200AFB757 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		FC8C8E722920072800AFB757 /* LedgerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerRowView.swift; sourceTree = "<group>"; };
 		FC9ACA0B291C7E9D00061440 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				FC6412BD292082F200E60DDE /* LedgerView.swift */,
 				FC6412B92920380A00E60DDE /* ErrorView.swift */,
 				FC6412ED292D85BD00E60DDE /* CloudSharingView.swift */,
+				FC88A9AF29341B3E00F71538 /* LedgerHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				FC6412F0292EB49800E60DDE /* CoreData+Convenience.swift in Sources */,
 				FC2EB67A291168A1004E766C /* HeathApp.swift in Sources */,
 				FC8C8E732920072800AFB757 /* LedgerRowView.swift in Sources */,
+				FC88A9B029341B3E00F71538 /* LedgerHeaderView.swift in Sources */,
 				FC6412C52926785F00E60DDE /* ImageFromData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

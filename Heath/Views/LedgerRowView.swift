@@ -18,14 +18,13 @@ struct LedgerRowView: View {
             LedgerView(ledger: ledger)
         }) {
             HStack {
-                HStack {
+                HStack(spacing: 12) {
                     if let imageData = contact?.thumbnailImageData {
                         Image(data: imageData)?
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .cornerRadius(.infinity)
-                    }
-                    else {
+                    } else {
                         Image(systemName: "person.crop.circle")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -51,7 +50,7 @@ struct LedgerRowView: View {
                 }
             }
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 64)
+        .frame(maxHeight: 56)
     }
 }
 

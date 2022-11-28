@@ -56,4 +56,16 @@ public class Ledger: NSManagedObject {
             return nil
         }
     }()
+    
+    lazy var balance: Double = {
+        var balance: Double = 0
+        let isOwner = CoreDataStack.shared.isOwner(object: self)
+        guard let transactions else { return 0 }
+        transactions.forEach({ transaction in
+            let transaction = transaction as! Transaction
+            let difference = transaction.amount * (transaction.split)
+            balance = isOwner ? balance + difference : balance - difference
+        })
+        return balance
+    }()
 }
