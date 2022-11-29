@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct TrackSpendingButtonView: View {
+    @Binding var creatingNewTransaction: Bool
     var body: some View {
         Button {
-            
+            creatingNewTransaction = true
         } label: {
             Label("Track Spending", systemImage: "square.and.pencil")
         }
@@ -19,6 +20,6 @@ struct TrackSpendingButtonView: View {
 
 struct TrackSpendingButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        TrackSpendingButtonView()
+        TrackSpendingButtonView(creatingNewTransaction: .constant(false))
     }
 }

@@ -24,6 +24,7 @@
 		FC88A9AE2933076100F71538 /* Ledger+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88A9AD2933076100F71538 /* Ledger+CoreDataClass.swift */; };
 		FC88A9B029341B3E00F71538 /* LedgerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88A9AF29341B3E00F71538 /* LedgerHeaderView.swift */; };
 		FC88A9B42936555000F71538 /* TrackSpendingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88A9B32936555000F71538 /* TrackSpendingButtonView.swift */; };
+		FC88A9B62936593100F71538 /* NewTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88A9B52936593100F71538 /* NewTransactionView.swift */; };
 		FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E70291F719200AFB757 /* MessageComposeView.swift */; };
 		FC8C8E732920072800AFB757 /* LedgerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E722920072800AFB757 /* LedgerRowView.swift */; };
 		FC9ACA0C291C7E9D00061440 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ACA0B291C7E9D00061440 /* Config.swift */; };
@@ -51,6 +52,7 @@
 		FC88A9AD2933076100F71538 /* Ledger+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ledger+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FC88A9AF29341B3E00F71538 /* LedgerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerHeaderView.swift; sourceTree = "<group>"; };
 		FC88A9B32936555000F71538 /* TrackSpendingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSpendingButtonView.swift; sourceTree = "<group>"; };
+		FC88A9B52936593100F71538 /* NewTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionView.swift; sourceTree = "<group>"; };
 		FC8C8E70291F719200AFB757 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		FC8C8E722920072800AFB757 /* LedgerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerRowView.swift; sourceTree = "<group>"; };
 		FC9ACA0B291C7E9D00061440 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				FC6412BD292082F200E60DDE /* LedgerView.swift */,
 				FC88A9AF29341B3E00F71538 /* LedgerHeaderView.swift */,
 				FC88A9B32936555000F71538 /* TrackSpendingButtonView.swift */,
+				FC88A9B52936593100F71538 /* NewTransactionView.swift */,
 			);
 			path = LedgerView;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			files = (
 				FC6412BC2920384A00E60DDE /* ErrorWrapper.swift in Sources */,
 				FC6412C12921DAFD00E60DDE /* SceneDelegate.swift in Sources */,
+				FC88A9B62936593100F71538 /* NewTransactionView.swift in Sources */,
 				FC6412EE292D85BD00E60DDE /* CloudSharingView.swift in Sources */,
 				FC6412C32921DDE600E60DDE /* AppDelegate.swift in Sources */,
 				FC6413392932D81700E60DDE /* Heath.xcdatamodeld in Sources */,

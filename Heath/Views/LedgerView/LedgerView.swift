@@ -10,6 +10,7 @@ import Contacts
 
 struct LedgerView: View {
     let ledger: Ledger
+    @State private var creatingNewTransaction: Bool = false
     var body: some View {
         let name = formattedName()
         let balance = formattedBalance()
@@ -24,17 +25,39 @@ struct LedgerView: View {
             }
             .headerProminence(.increased)
             Spacer()
-            TrackSpendingButtonView()
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {  }) { Image(systemName: "ellipsis") }
-            }
+            TrackSpendingButtonView(creatingNewTransaction: $creatingNewTransaction)
         }
         .navigationTitle(name)
         .navigationBarTitleDisplayMode(.inline)
         .padding()
         .background(Color(UIColor.systemGroupedBackground))
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {  }) { Image(systemName: "ellipsis") }
+            }
+        }
+        .sheet(isPresented: $creatingNewTransaction) {
+            NavigationStack {
+                NewTransactionView()
+                    .navigationTitle("Track Spending")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Cancel") {
+                                creatingNewTransaction = false
+                            }
+                        }
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Done") {
+                                creatingNewTransaction = false
+                            }
+                        }
+                    }
+            }
+            .interactiveDismissDisabled()
+        }
+        
+        
     }
     
     private func formattedName() -> String {
