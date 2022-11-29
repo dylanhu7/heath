@@ -38,6 +38,7 @@ public class Ledger: NSManagedObject {
         let otherRole = isOwner ? CKShare.ParticipantRole.privateUser : CKShare.ParticipantRole.owner
         var participants = share.participants
         let index = participants.partition(by: { $0.role == otherRole })
+        guard index < participants.count else { return nil }
         let otherParticipant = participants[index]
         let identifiers = otherParticipant.userIdentity.contactIdentifiers
         var predicate: NSPredicate

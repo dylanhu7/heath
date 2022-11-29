@@ -15,9 +15,20 @@ struct LedgerView: View {
         let balance = formattedBalance()
         VStack {
             LedgerHeaderView(ledger: ledger, name: name, balance: balance)
-            Spacer()
-            Section("History") {
+            Section(
+                header: HStack {
+                    Text("History").font(.title).fontWeight(.semibold).foregroundColor(.accentColor)
+                    Spacer()
+                }) {
                 EmptyView()
+            }
+            .headerProminence(.increased)
+            Spacer()
+            TrackSpendingButtonView()
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {  }) { Image(systemName: "ellipsis") }
             }
         }
         .navigationTitle(name)

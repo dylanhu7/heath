@@ -34,22 +34,26 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: $isChoosingContact, onDismiss: {
+            guard contact != nil else { return }
+            loadingShare = true
+            isSendingMessage = true
             Task {
                 await createLedger()
             }
+            loadingShare = false
         }, content: {
             ContactPicker(contact: $contact)
         })
-        .sheet(isPresented: $isSendingMessage, onDismiss: { [messageComposeResult] in
+        .sheet(isPresented: $isSendingMessage, onDismiss: {
             guard let newLedger else { return }
-            if messageComposeResult != MessageComposeResult.sent {
+            if messageComposeResult != .sent {
                 context.delete(newLedger)
             }
             CoreDataStack.shared.save(with: .addLedger)
             contact = nil
-        }, content: { [loadingShare, contact, share] in
+        }, content: {
             if loadingShare {
-                ProgressView()
+                ProgressView("Creating Ledger")
             } else if let contact, let url = share?.url {
                 MessageComposeView(contact: contact, message: url.absoluteString, result: $messageComposeResult)
             }
@@ -58,8 +62,6 @@ struct ContentView: View {
     
     private func createLedger() async {
         guard let contact else { return }
-        isSendingMessage = true
-        loadingShare = true
         newLedger = Ledger(context: context)
         guard let newLedger else { return }
         newLedger.createdAt = Date.now
@@ -72,7 +74,6 @@ struct ContentView: View {
             share[CKShare.SystemFieldKey.title] = "Dylan and \(contact.givenName)"
             share[CKShare.SystemFieldKey.shareType] = "Ledger"
             self.share = try await CoreDataStack.shared.persistentContainer.persistUpdatedShare(share, in: CoreDataStack.shared.privatePersistentStore)
-            loadingShare = false
         } catch {
             debugPrint("ERROR: failed to create share: \(error)")
         }

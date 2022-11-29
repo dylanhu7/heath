@@ -23,6 +23,7 @@
 		FC6413392932D81700E60DDE /* Heath.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC6413372932D81700E60DDE /* Heath.xcdatamodeld */; };
 		FC88A9AE2933076100F71538 /* Ledger+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88A9AD2933076100F71538 /* Ledger+CoreDataClass.swift */; };
 		FC88A9B029341B3E00F71538 /* LedgerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88A9AF29341B3E00F71538 /* LedgerHeaderView.swift */; };
+		FC88A9B42936555000F71538 /* TrackSpendingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88A9B32936555000F71538 /* TrackSpendingButtonView.swift */; };
 		FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E70291F719200AFB757 /* MessageComposeView.swift */; };
 		FC8C8E732920072800AFB757 /* LedgerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E722920072800AFB757 /* LedgerRowView.swift */; };
 		FC9ACA0C291C7E9D00061440 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ACA0B291C7E9D00061440 /* Config.swift */; };
@@ -49,6 +50,7 @@
 		FC6413382932D81700E60DDE /* Heath.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Heath.xcdatamodel; sourceTree = "<group>"; };
 		FC88A9AD2933076100F71538 /* Ledger+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ledger+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FC88A9AF29341B3E00F71538 /* LedgerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerHeaderView.swift; sourceTree = "<group>"; };
+		FC88A9B32936555000F71538 /* TrackSpendingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSpendingButtonView.swift; sourceTree = "<group>"; };
 		FC8C8E70291F719200AFB757 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		FC8C8E722920072800AFB757 /* LedgerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerRowView.swift; sourceTree = "<group>"; };
 		FC9ACA0B291C7E9D00061440 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -127,6 +129,16 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		FC88A9B12936548700F71538 /* LedgerView */ = {
+			isa = PBXGroup;
+			children = (
+				FC6412BD292082F200E60DDE /* LedgerView.swift */,
+				FC88A9AF29341B3E00F71538 /* LedgerHeaderView.swift */,
+				FC88A9B32936555000F71538 /* TrackSpendingButtonView.swift */,
+			);
+			path = LedgerView;
+			sourceTree = "<group>";
+		};
 		FCCB53CD291825FC00EB136B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,13 +164,12 @@
 			isa = PBXGroup;
 			children = (
 				FC2EB67B291168A1004E766C /* ContentView.swift */,
+				FC88A9B12936548700F71538 /* LedgerView */,
+				FC8C8E722920072800AFB757 /* LedgerRowView.swift */,
 				FCCB53D7291B084300EB136B /* ContactPicker.swift */,
 				FC8C8E70291F719200AFB757 /* MessageComposeView.swift */,
-				FC8C8E722920072800AFB757 /* LedgerRowView.swift */,
-				FC6412BD292082F200E60DDE /* LedgerView.swift */,
-				FC6412B92920380A00E60DDE /* ErrorView.swift */,
 				FC6412ED292D85BD00E60DDE /* CloudSharingView.swift */,
-				FC88A9AF29341B3E00F71538 /* LedgerHeaderView.swift */,
+				FC6412B92920380A00E60DDE /* ErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -242,6 +253,7 @@
 				FC88A9AE2933076100F71538 /* Ledger+CoreDataClass.swift in Sources */,
 				FCCB53D8291B084300EB136B /* ContactPicker.swift in Sources */,
 				FC2EB67C291168A1004E766C /* ContentView.swift in Sources */,
+				FC88A9B42936555000F71538 /* TrackSpendingButtonView.swift in Sources */,
 				FC6412BA2920380A00E60DDE /* ErrorView.swift in Sources */,
 				FC6412BE292082F200E60DDE /* LedgerView.swift in Sources */,
 				FC6412E3292AC82200E60DDE /* CoreDataStack.swift in Sources */,
