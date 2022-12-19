@@ -19,8 +19,8 @@ struct HeathApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                ContentView().environment(\.managedObjectContext, CoreDataStack.shared.context)
-            }
+                ContentView()
+            }.environment(\.managedObjectContext, CoreDataStack.shared.context)
         }
     }
 }

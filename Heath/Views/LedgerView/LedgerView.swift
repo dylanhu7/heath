@@ -9,7 +9,8 @@ import SwiftUI
 import Contacts
 
 struct LedgerView: View {
-    let ledger: Ledger
+    @ObservedObject var ledger: Ledger
+    @State private var newTransaction: Transaction?
     @State private var creatingNewTransaction: Bool = false
     var body: some View {
         let name = formattedName()
@@ -21,7 +22,9 @@ struct LedgerView: View {
                     Text("History").font(.title).fontWeight(.semibold).foregroundColor(.accentColor)
                     Spacer()
                 }) {
-                EmptyView()
+                    ForEach(ledger.sortedTransactions) { transaction in
+                        Text(transaction.detail ?? "No detail")
+                    }
             }
             .headerProminence(.increased)
             Spacer()
@@ -37,27 +40,8 @@ struct LedgerView: View {
             }
         }
         .sheet(isPresented: $creatingNewTransaction) {
-            NavigationStack {
-                NewTransactionView()
-                    .navigationTitle("Track Spending")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .cancellationAction) {
-                            Button("Cancel") {
-                                creatingNewTransaction = false
-                            }
-                        }
-                        ToolbarItem(placement: .confirmationAction) {
-                            Button("Done") {
-                                creatingNewTransaction = false
-                            }
-                        }
-                    }
-            }
-            .interactiveDismissDisabled()
+            NewTransactionView(ledger: ledger)
         }
-        
-        
     }
     
     private func formattedName() -> String {

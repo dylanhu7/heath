@@ -28,6 +28,8 @@ extension NSPersistentContainer {
 enum ContextSaveContextualInfo: String {
     case addLedger = "adding a ledger"
     case deleteLedger = "deleting a ledger"
+    case addTransaction = "adding a transaction"
+    case deleteTransaction = "deleting a transaction"
 }
 
 extension NSManagedObjectContext {

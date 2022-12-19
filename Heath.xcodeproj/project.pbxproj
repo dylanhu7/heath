@@ -28,6 +28,7 @@
 		FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E70291F719200AFB757 /* MessageComposeView.swift */; };
 		FC8C8E732920072800AFB757 /* LedgerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C8E722920072800AFB757 /* LedgerRowView.swift */; };
 		FC9ACA0C291C7E9D00061440 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ACA0B291C7E9D00061440 /* Config.swift */; };
+		FCB35EF2294FD059000CC9D7 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB35EF1294FD059000CC9D7 /* CurrencyManager.swift */; };
 		FCCB53CF291825FC00EB136B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB53CE291825FC00EB136B /* CloudKit.framework */; };
 		FCCB53D8291B084300EB136B /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB53D7291B084300EB136B /* ContactPicker.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		FC8C8E70291F719200AFB757 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		FC8C8E722920072800AFB757 /* LedgerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerRowView.swift; sourceTree = "<group>"; };
 		FC9ACA0B291C7E9D00061440 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		FCB35EF1294FD059000CC9D7 /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
 		FCCB53CE291825FC00EB136B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FCCB53D02918261E00EB136B /* Heath.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Heath.entitlements; sourceTree = "<group>"; };
 		FCCB53D7291B084300EB136B /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
@@ -93,9 +95,9 @@
 		FC2EB678291168A1004E766C /* Heath */ = {
 			isa = PBXGroup;
 			children = (
-				FC6412E129299E9D00E60DDE /* CoreData */,
 				FCCB53D12918272500EB136B /* App */,
 				FCCB53D22918273D00EB136B /* Views */,
+				FC6412E129299E9D00E60DDE /* CoreData */,
 				FC2EB68B29116DDA004E766C /* Models */,
 				FC2EB67D291168A2004E766C /* Assets.xcassets */,
 				FC2EB67F291168A2004E766C /* Preview Content */,
@@ -114,10 +116,11 @@
 		FC2EB68B29116DDA004E766C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FC6413372932D81700E60DDE /* Heath.xcdatamodeld */,
 				FC88A9AD2933076100F71538 /* Ledger+CoreDataClass.swift */,
 				FC6412BB2920384A00E60DDE /* ErrorWrapper.swift */,
 				FC6412C42926785F00E60DDE /* ImageFromData.swift */,
-				FC6413372932D81700E60DDE /* Heath.xcdatamodeld */,
+				FCB35EF1294FD059000CC9D7 /* CurrencyManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				FC6412E3292AC82200E60DDE /* CoreDataStack.swift in Sources */,
 				FC8C8E71291F719200AFB757 /* MessageComposeView.swift in Sources */,
 				FC6412F0292EB49800E60DDE /* CoreData+Convenience.swift in Sources */,
+				FCB35EF2294FD059000CC9D7 /* CurrencyManager.swift in Sources */,
 				FC2EB67A291168A1004E766C /* HeathApp.swift in Sources */,
 				FC8C8E732920072800AFB757 /* LedgerRowView.swift in Sources */,
 				FC88A9B029341B3E00F71538 /* LedgerHeaderView.swift in Sources */,

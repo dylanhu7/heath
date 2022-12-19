@@ -69,4 +69,8 @@ public class Ledger: NSManagedObject {
         })
         return balance
     }()
+    
+    var sortedTransactions: [Transaction] {
+        return (transactions?.allObjects as? [Transaction])?.sorted(by: { $0.createdAt ?? .now > $1.createdAt ?? .now }) ?? []
+    }
 }

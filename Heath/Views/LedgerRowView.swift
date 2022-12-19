@@ -10,10 +10,10 @@ import Contacts
 import CloudKit
 
 struct LedgerRowView: View {
-    let ledger: Ledger
+    @ObservedObject var ledger: Ledger
     var body: some View {
         let contact = ledger.contact
-        let transaction = (ledger.transactions?.allObjects as? [Transaction])?.first
+        let transaction = ledger.sortedTransactions.first
         NavigationLink(destination: {
             LedgerView(ledger: ledger)
         }) {
